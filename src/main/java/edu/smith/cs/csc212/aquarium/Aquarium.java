@@ -1,6 +1,9 @@
 package edu.smith.cs.csc212.aquarium;
 
 import java.awt.Color;
+
+// https://github.com/jjfiv/CSC212Aquarium
+
 import java.awt.Graphics2D;
 
 import me.jjfoley.gfx.GFX;
@@ -44,11 +47,15 @@ public class Aquarium extends GFX {
 	int fish1X = getWidth() + 100;
 	int fish2X = getWidth() + 300;
 	// the small red fish:
-	int fish3X = - 100;
+	int fish3X = - 90;
 	
-	Fish nemo = new Fish(Color.magenta, 250, 250, true);
-	Fish marlin = new Fish(Color.orange, 100, 100, false);
+	Fish nemo = new Fish(Color.magenta,
+			250, 250, true);
+	Fish marlin = new Fish(Color.orange,
+			100, 100, false);
 
+	Bubbles bubbly = new Bubbles(Color.white,
+			250, 250);
 	
 	@Override
 	public void draw(Graphics2D g) {
@@ -58,6 +65,7 @@ public class Aquarium extends GFX {
 
 		nemo.draw(g);
 		marlin.draw(g);
+		bubbly.draw(g, null, fish1X, fish1X);
 		
 		
 		DrawFish.smallFacingLeft(g, nemo.color, nemo.x, nemo.y);
@@ -68,7 +76,7 @@ public class Aquarium extends GFX {
 		DrawFish.facingRight(g, Color.green, fish2X, 300);
 
 		// What if we wanted this little fish to swim, too?
-		DrawFish.smallFacingLeft(g, Color.red, fish3X, 100);
+		DrawFish.smallFacingRight(g, Color.red, fish3X, 100);
 
 		// Draw our snail!
 		algorithm.draw(g);
@@ -76,10 +84,10 @@ public class Aquarium extends GFX {
 		// Move the fish!
 		fish1X -= 1;
 		fish2X -= 2;
-		fish3X -= 3;
+		fish3X += 4;
 		
-		if (fish3X > getWidth() + 100) {
-			fish3X = -100;
+		if (fish3X > getWidth() + 90) {
+			fish3X = -90;
 		}
 
 	}
