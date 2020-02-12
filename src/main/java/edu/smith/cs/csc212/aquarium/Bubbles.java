@@ -52,7 +52,7 @@ public class Bubbles {
 		this.move();
 		this.one(g, color, destX, destX);
 	}
-
+	
 	public void one(Graphics2D g, Color color, int x, int y) {
 
 		// Draw the bubble
