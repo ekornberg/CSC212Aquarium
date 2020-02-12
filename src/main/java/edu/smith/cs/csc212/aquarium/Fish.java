@@ -26,8 +26,7 @@ public class Fish {
 	public Fish(Color c,
 			int startX,
 			int startY, 
-			boolean isLittle)
-	{
+			boolean isLittle) {
 		this.color = c;
 		this.x = startX;
 		this.y= startY;
@@ -37,8 +36,8 @@ public class Fish {
 	
 	// fish faces random destination
 	private void dest() {
-		this.destX = rand.nextInt(500);
-		this.destY = rand.nextInt(500);
+		this.destX = rand.nextInt(475);
+		this.destY = rand.nextInt(475);
 		if (this.x < this.destX) {
 			this.facesLeft = false;
 		} else {
@@ -52,8 +51,7 @@ public class Fish {
 		if (this.x == this.destX && 
 				this.y == this.destY) {
 			dest();
-		}
-		if (this.y < this.destY ) {
+		} if (this.y < this.destY ) {
 			this.y += 1;
 		} if (this.y > this.destY ) {
 			this.y -= 1;
