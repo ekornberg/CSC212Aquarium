@@ -86,6 +86,3 @@ public class Fish {
 		}
 	}
 }
-
-// set side L/R/bot/top (for snail)
-//trig for bubbles

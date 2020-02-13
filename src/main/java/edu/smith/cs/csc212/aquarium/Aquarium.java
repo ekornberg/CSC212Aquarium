@@ -43,12 +43,8 @@ public class Aquarium extends GFX {
 		// Don't change this here, edit the variables instead.
 		super(WIDTH, HEIGHT);
 	}
-
-	int fish1X = getWidth() + 100;
-	int fish2X = getWidth() + 300;
-	// the small red fish:
-	int fish3X = - 90;
 	
+	// Make fish
 	Fish nemo = new Fish(Color.magenta,
 			250, 250, true);
 	Fish marlin = new Fish(Color.orange,
@@ -57,25 +53,44 @@ public class Aquarium extends GFX {
 			400, 200, true);
 	Fish dory = new Fish(Color.cyan,
 			50, 50, false);
-
-	Bubbles bubbly = new Bubbles(Color.white, 20, 20);
+		
+	// Chest
+	Bubble treasure = new Bubble(Color.black);
+	Bubble lock = new Bubble(Color.yellow);
+	
+	// Make bubbles
+	Bubble bubb = new Bubble(Color.white);
+	Bubble[] bubbles = new Bubble[10]; {
+	
+	for (int i=0; i < bubbles.length; i++) {
+		bubbles[i] = new Bubble(Color.white);
+		}
+	}
 	
 	@Override
 	public void draw(Graphics2D g) {
 		// Draw the "ocean" background.
 		g.setColor(Color.blue);
 		g.fillRect(0, 0, getWidth(), getHeight());
-
+		
+		//draw fish
 		nemo.draw(g);
 		marlin.draw(g);
 		trout.draw(g);
 		dory.draw(g);
-		bubbly.draw(g);
 		
+		// draw treasure
+		treasure.drawChest(g);
+		lock.drawLock(g);
+		
+		// draw bubbles
+		for (Bubble b : this.bubbles) {
+			b.draw(g);
+		}		
 		
 		// Draw our snail!
 		algorithm.draw(g);
-		}
+	}
 
 	public static void main(String[] args) {
 		// Uncomment this to make it go slower!
