@@ -18,6 +18,7 @@ public class Bubble {
 	// Create a random number generator:
 	Random rand = new Random();
 
+	// Bubble constructor
 	public Bubble(Color c) {
 		this.color = c;
 		this.x = rand.nextInt(150);
@@ -26,12 +27,13 @@ public class Bubble {
 	}
 
 	public void move() {
+		// If bubble reaches top, wrap and start at random x-coordinate between 0-150
 		if (this.y <= 0) {
 			this.y = 440;
 			this.x = rand.nextInt(150);
 		} else {
 			this.y -= 1;
-		}
+		} // Wiggle bubble
 		this.x = this.x + rand.nextInt(5);
 		this.x = this.x - rand.nextInt(5);
 	}
@@ -45,31 +47,43 @@ public class Bubble {
 		g.fill(bub);
 		g.draw(bub);
 
-		// move bubble
+		// Move bubble
 		this.move();
 	}
 
 	public void drawChest(Graphics2D g) {
-		this.chest(g); 
+		this.chest(g); // Draw box for chest
 	}
 	
 	public void chest(Graphics2D g) {
+		// Box for chest
 		g.setColor(color);
 		Shape box = new Rectangle2D.Double(20, 440, 150 , 100);
 		g.fill(box);
-		g.setColor(Color.black);
 		g.draw(box);
 	}
 	
 	public void drawLock(Graphics2D g) {
-		this.lock(g);
+		this.lock(g); // Draw lock for chest
 	}
 	
 	public void lock(Graphics2D g) {
+		// Lock for chest
 		g.setColor(color);
 		Shape lock = new Rectangle2D.Double(70, 470, 50, 15);
 		g.fill(lock);
 		g.setColor(Color.yellow);
-		g.draw(lock);
+	}
+	
+	public void drawLine(Graphics2D g) {
+		this.line(g); // Draw lock for chest
+	}
+	
+	public void line(Graphics2D g) {
+		// Lock for chest
+		g.setColor(color);
+		Shape line = new Rectangle2D.Double(20, 470, 150, 3);
+		g.fill(line);
+		g.setColor(Color.yellow);
 	}
 }

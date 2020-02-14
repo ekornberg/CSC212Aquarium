@@ -42,65 +42,95 @@ public class Aquarium extends GFX {
 		// Here we ask GFX to make our window of size WIDTH and HEIGHT.
 		// Don't change this here, edit the variables instead.
 		super(WIDTH, HEIGHT);
-	}
-	
-	// Make fish
-	Fish nemo = new Fish(Color.magenta,
-			250, 250, true);
-	Fish marlin = new Fish(Color.orange,
-			100, 100, false);
-	Fish trout = new Fish(Color.lightGray,
-			400, 200, true);
-	Fish dory = new Fish(Color.cyan,
-			50, 50, false);
-		
-	// Chest
-	Bubble treasure = new Bubble(Color.black);
-	Bubble lock = new Bubble(Color.yellow);
-	
-	// Make bubbles
-	Bubble bubb = new Bubble(Color.white);
-	Bubble[] bubbles = new Bubble[10]; {
-	
-	for (int i=0; i < bubbles.length; i++) {
-		bubbles[i] = new Bubble(Color.white);
+
+		// Many bubbles
+		for (int i = 0; i < bubbles.length; i++) {
+			bubbles[i] = new Bubble(Color.white);
+		}
+
+		// Many seaweeds
+		for (int i = 0; i < sea.length; i++) {
+			sea[i] = new Food(Color.green);
 		}
 	}
+
+	// Make fish
+	Fish nemo = new Fish(Color.red, 250, 250, true);
+	Fish marlin = new Fish(Color.cyan, 100, 100, false);
+	Fish trout = new Fish(Color.orange, 400, 200, true);
+	Fish dory = new Fish(Color.magenta, 50, 50, false);
+
+	// Make chest
+	Bubble treasure = new Bubble(Color.black);
+	Bubble lock = new Bubble(Color.yellow);
+	Bubble line = new Bubble(Color.gray);
+
+	// Make bubbles
+	Bubble bubb = new Bubble(Color.white);
+	Bubble[] bubbles = new Bubble[10];
+
+	// Make seaweed
+	Food seaweed = new Food(Color.green);
+	Food[] sea = new Food[10];
+
+	// Make sand
+	Food sand = new Food(Color.orange);
 	
+	// Make hunger meter
+	Food empty = new Food(Color.white);
+	Food label = new Food(Color.darkGray);
+	
+	//public void meter(Graphics2D g) {
+		//Fish.hungry();
+	//}
+
 	@Override
 	public void draw(Graphics2D g) {
 		// Draw the "ocean" background.
 		g.setColor(Color.blue);
 		g.fillRect(0, 0, getWidth(), getHeight());
+
+		// Draw sand
+		sand.drawSand(g, Color.orange);
 		
-		//draw fish
+		// Draw hunger meter
+		empty.drawE(g, Color.white);
+		label.drawLabel(g);
+
+		// Draw fish
 		nemo.draw(g);
 		marlin.draw(g);
 		trout.draw(g);
 		dory.draw(g);
-		
-		// draw treasure
+
+		// Draw treasure chest
 		treasure.drawChest(g);
 		lock.drawLock(g);
-		
-		// draw bubbles
+		line.drawLine(g);
+
+		// Draw bubbles
 		for (Bubble b : this.bubbles) {
 			b.draw(g);
-		}		
-		
+		}
+
 		// Draw our snail!
 		algorithm.draw(g);
+
+		// Draw seaweed
+		for (Food f : this.sea) {
+			f.draw(g);
+		}
 	}
 
 	public static void main(String[] args) {
 		// Uncomment this to make it go slower!
 		// GFX.FPS = 10;
-		// This is potentially helpful for debugging movement if there are too many print statements!
+		// This is potentially helpful for debugging movement if there are too many
+		// print statements!
 
 		// Note that we can store an Aquarium in a variable of type GFX because Aquarium
 		// is a very specific GFX, much like 7 can be stored in a variable of type int!
 		GFX app = new Aquarium();
 		app.start();
 	}
-
 }

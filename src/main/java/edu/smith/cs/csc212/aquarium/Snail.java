@@ -23,6 +23,7 @@ public class Snail {
 	 * The position of the Snail; y-coordinate.
 	 */
 	public int y;
+	
 
 	/**
 	 * Create a snail at (sx, sy) with position s.
@@ -49,8 +50,30 @@ public class Snail {
 	/**
 	 * TODO: move the snail about.
 	 */
+	// Snail moves clockwise
 	public void move() {
-
+		
+		// If snail on top left, move to top right
+		if (this.x < 500 && this.y == 51) {
+			this.direction = "top";
+			this.x += 1;
+		// If snail on top right, move to bottom right
+		} else if (this.x == 500 && this.y < 449) {
+			this.direction = "right";
+			// (not fully on screen but won't move y when in action)
+			// this.x -= 51; 
+			this.y += 1;
+		// If snail on bottom right, move to bottom left
+		} else if (this.x > 0 && this.y == 449) {
+			this.direction = "bottom";
+			this.x -= 1;
+		// If snail on bottom left, move to top left
+		} else if (this.x == 0 && this.y > 51) {
+			this.direction = "left";
+			// (not fully on screen but won't move y when in action)
+			// this.x += 51;
+			this.y -= 1;
+		} 
 	}
 
 	/**
@@ -62,7 +85,7 @@ public class Snail {
 		// By calling move here, if we want to move our snail, we can do so.
 		// Move gets called by draw, so whenever draw gets called.
 		this.move();
-
+	
 		// By making a new Graphics2D object, we can move everything that gets drawn to
 		// it.
 		// This is kind of tricky to wrap your head around, so I gave it to you.
@@ -138,6 +161,6 @@ public class Snail {
 		g.setColor(shellColor);
 		g.fill(shell3);
 		g.setColor(Color.black);
-		g.draw(shell3);
+		g.draw(shell3);		
 	}
 }
